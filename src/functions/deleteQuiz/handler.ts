@@ -17,9 +17,7 @@ const deleteQuiz = async (event) => {
   try {
     await deleteQuizOnTable(quizPK, event.user.PK);
 
-    const questionData: DocumentClient.ItemList = await getAllQuestionOfQuiz(
-      quizPK
-    );
+    const questionData = await getAllQuestionOfQuiz(quizPK);
 
     const recordData = await getAllRecordOfQuiz(quizPK);
     const deleteRequests = createDeleteRequests(
