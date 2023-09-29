@@ -1,8 +1,6 @@
-import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import { sendError, sendResponse } from '@libs/api-gateway';
 
 import checkToken from 'src/middleware/auth';
-import db from '@libs/db';
 import middy from '@middy/core';
 import {
   createDeleteRequests,
