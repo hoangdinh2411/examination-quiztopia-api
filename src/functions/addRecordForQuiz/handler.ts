@@ -5,11 +5,7 @@ import { middyBodyParser } from '@libs/lambda';
 import schema from './schema';
 import validation from 'src/helpers/validation';
 import checkToken from 'src/middleware/auth';
-import {
-  createNewRecord,
-  getExistentRecord,
-  updateExistentRecordWithHigherScore,
-} from './model';
+import { createNewOrUpdateExistentRecord } from './model';
 const addRecordForQuiz: ValidatedEventAPIGatewayProxyEvent<
   typeof schema
 > = async (event) => {
@@ -19,31 +15,19 @@ const addRecordForQuiz: ValidatedEventAPIGatewayProxyEvent<
     if (score <= 0) {
       return sendError(400, 'Score must be greater than 0! Please try again!');
     }
-
-    const existent_record = await getExistentRecord(quizPK, event.user.PK);
-
-    if (existent_record.Count > 0) {
-      if (existent_record.Items[0].Score >= score) {
-        return sendError(400, 'Score must be greater than old score');
-      }
-      await updateExistentRecordWithHigherScore(
-        existent_record.Items[0].PK,
-        existent_record.Items[0].SK,
-        score
-      );
-      return sendResponse({
-        message: 'Update new record for the quiz successfully!',
-      });
-    }
-
-    await createNewRecord(quizPK, score, event.user.PK, event.user.Username);
+    await createNewOrUpdateExistentRecord(
+      quizPK,
+      score,
+      event.user.PK,
+      event.user.Username
+    );
     return sendResponse({
       success: true,
       message: 'Save new record in leader board for the quiz successfully!',
     });
   } catch (error) {
     if (error.code === 'ConditionalCheckFailedException') {
-      error.message = 'try again!';
+      error.message = 'Sorry,The record is not better than the old one!';
     }
     return sendError(error.statusCode, error.message);
   }

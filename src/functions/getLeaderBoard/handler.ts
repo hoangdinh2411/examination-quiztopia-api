@@ -24,6 +24,11 @@ const getLeaderBoard = async (event) => {
         ProjectionExpression: '#username, #score',
       })
       .promise();
+    if (data.Items.length === 0) {
+      return sendResponse({
+        message: 'There is no record for this quiz',
+      });
+    }
     return sendResponse({
       message:
         'Get leader board with all users who have score more than 8 for the quiz successfully',
@@ -31,7 +36,7 @@ const getLeaderBoard = async (event) => {
     });
   } catch (error) {
     console.log(error);
-    return sendError(400, error.message);
+    return sendError(error.statusCode, error.message);
   }
 };
 

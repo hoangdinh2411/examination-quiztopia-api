@@ -26,6 +26,10 @@ const getQuestionsOfQuiz = async (event) => {
         ProjectionExpression: '#questionId, #question, #answer, #location',
       })
       .promise();
+
+    if (data.Items.length === 0) {
+      return sendResponse({ message: 'There is no question' });
+    }
     return sendResponse({ data: data.Items });
   } catch (error) {
     console.log(error);

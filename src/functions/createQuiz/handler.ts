@@ -36,7 +36,7 @@ const createQuiz: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (
     });
   } catch (error) {
     if (error.code === 'ConditionalCheckFailedException') {
-      error.message = 'try again!';
+      error.message = 'Question id was duplicated! Please try again!';
     }
     return sendError(error.statusCode, error.message);
   }

@@ -24,6 +24,9 @@ const getAllQuizByUsername = async (event) => {
         ProjectionExpression: '#quizId, #name, #username',
       })
       .promise();
+    if (data.Items.length === 0) {
+      return sendResponse({ message: 'There is no quiz' });
+    }
     return sendResponse({ data: data.Items });
   } catch (error) {
     console.log(error);

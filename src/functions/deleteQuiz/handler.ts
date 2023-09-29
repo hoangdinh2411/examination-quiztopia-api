@@ -18,13 +18,14 @@ const deleteQuiz = async (event) => {
     const questionData = await getAllQuestionOfQuiz(quizPK);
 
     const recordData = await getAllRecordOfQuiz(quizPK);
-    const deleteRequests = createDeleteRequests(
-      [...questionData, ...recordData],
-      quizPK
-    );
+    if (questionData.length !== 0 && recordData.length !== 0) {
+      const deleteRequests = createDeleteRequests(
+        [...questionData, ...recordData],
+        quizPK
+      );
 
-    await deleteQuestionsAndRecords(deleteRequests);
-
+      await deleteQuestionsAndRecords(deleteRequests);
+    }
     return sendResponse({
       message: 'Delete quiz and all questions of the quiz successfully!',
     });

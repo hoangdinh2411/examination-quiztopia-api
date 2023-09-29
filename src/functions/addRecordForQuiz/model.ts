@@ -45,7 +45,7 @@ export const updateExistentRecordWithHigherScore = async (
     .promise();
 };
 
-export const createNewRecord = async (
+export const createNewOrUpdateExistentRecord = async (
   quizPK: string,
   newScore: number,
   userPK: string,
@@ -66,7 +66,10 @@ export const createNewRecord = async (
         GSI_1_PK: 'RECORD',
         GSI_1_SK: quizPK,
       },
-      ConditionExpression: 'attribute_not_exists(PK)',
+      ConditionExpression: 'attribute_not_exists(Score) OR Score < :newScore',
+      ExpressionAttributeValues: {
+        ':newScore': newScore,
+      },
     })
     .promise();
 };
