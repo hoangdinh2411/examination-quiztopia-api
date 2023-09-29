@@ -1,0 +1,628 @@
+{
+  "ModelName": "Quiz_Table",
+  "ModelMetadata": {
+    "Author": "William DInh",
+    "DateCreated": "Jun 24, 2023, 04:20 PM",
+    "DateLastModified": "Jun 24, 2023, 05:29 PM",
+    "Description": "",
+    "Version": "1.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "Quiz_Table",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "PK",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "SK",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "Name",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Username",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Password",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Location",
+          "AttributeType": "M"
+        },
+
+        {
+          "AttributeName": "Question",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Answer",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Score",
+          "AttributeType": "N"
+        },
+        {
+          "AttributeName": "FinishedAt",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "QuestionId",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "QuizId",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "GSI_1_PK",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "GSI_1_SK",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "LEADER_BOARD_PK",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "LEADER_BOARD_SK",
+          "AttributeType": "N"
+        },
+        {
+          "AttributeName": "UserId",
+          "AttributeType": "S"
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "GSI_1",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "GSI_1_PK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "GSI_1_SK",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "LEADER_BOARD_INDEX",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "LEADER_BOARD_PK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "LEADER_BOARD_SK",
+              "AttributeType": "N"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        }
+      ],
+      "TableData": [
+        {
+          "PK": {
+            "S": "USER#hoang"
+          },
+          "SK": {
+            "S": "USER#hoang"
+          },
+          "Username": {
+            "S": "hoang"
+          },
+          "Password": {
+            "S": "Pass"
+          }
+        },
+        {
+          "PK": {
+            "S": "USER#linh"
+          },
+          "SK": {
+            "S": "USER#linh"
+          },
+          "Username": {
+            "S": "linh"
+          },
+          "Password": {
+            "S": "Pass"
+          }
+        },
+        {
+          "PK": {
+            "S": "USER#julia"
+          },
+          "SK": {
+            "S": "USER#julia"
+          },
+          "Username": {
+            "S": "julia"
+          },
+          "Password": {
+            "S": "Pass"
+          }
+        },
+        {
+          "PK": {
+            "S": "Quiz#1"
+          },
+          "SK": {
+            "S": "USER#hoang"
+          },
+          "Name": {
+            "S": "hoang"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ"
+          },
+          "GSI_1_SK": {
+            "S": "USER#hoang"
+          }
+        },
+        {
+          "PK": {
+            "S": "Quiz#2"
+          },
+          "SK": {
+            "S": "USER#linh"
+          },
+          "Name": {
+            "S": "linh"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ"
+          },
+          "GSI_1_SK": {
+            "S": "USER#linh"
+          }
+        },
+        {
+          "PK": {
+            "S": "Quiz#3"
+          },
+          "SK": {
+            "S": "USER#julia"
+          },
+          "Name": {
+            "S": "julia"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ"
+          },
+          "GSI_1_SK": {
+            "S": "USER#julia"
+          }
+        },
+        {
+          "PK": {
+            "S": "SCORE#1"
+          },
+          "SK": {
+            "S": "QUIZ#1"
+          },
+          "Score": {
+            "N": "9"
+          },
+          "FinishedAt": {
+            "S": "2021-06-24T17:29:00.000Z"
+          },
+          "LEADER_BOARD_PK": {
+            "S": "QUIZ#1"
+          },
+          "UserId": {
+            "S": "USER#julia"
+          },
+          "LEADER_BOARD_SK": {
+            "N": "9"
+          },
+          "Username": {
+            "S": "julia"
+          }
+        },
+        {
+          "PK": {
+            "S": "SCORE#2"
+          },
+          "SK": {
+            "S": "QUIZ#1"
+          },
+          "Score": {
+            "N": "8"
+          },
+          "FinishedAt": {
+            "S": "2021-06-24T17:29:00.000Z"
+          },
+          "LEADER_BOARD_PK": {
+            "S": "QUIZ#1"
+          },
+          "UserId": {
+            "S": "USER#linh"
+          },
+          "LEADER_BOARD_SK": {
+            "N": "8"
+          },
+          "Username": {
+            "S": "linh"
+          }
+        },
+        {
+          "PK": {
+            "S": "SCORE#3"
+          },
+          "SK": {
+            "S": "QUIZ#1"
+          },
+          "Score": {
+            "N": "4"
+          },
+          "FinishedAt": {
+            "S": "2021-06-24T17:29:00.000Z"
+          },
+          "LEADER_BOARD_PK": {
+            "S": "QUIZ#1"
+          },
+          "UserId": {
+            "S": "USER#hoang"
+          },
+          "LEADER_BOARD_SK": {
+            "N": "4"
+          },
+          "Username": {
+            "S": "hoang"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#1"
+          },
+          "SK": {
+            "S": "QUESTION#1"
+          },
+          "Question": {
+            "S": "QUESTION#1"
+          },
+          "Answer": {
+            "S": "QUESTION#1"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "1"
+              },
+              "longitude": {
+                "N": "1"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "1"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#1"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#1"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#2"
+          },
+          "SK": {
+            "S": "QUESTION#2"
+          },
+          "Question": {
+            "S": "QUESTION#2"
+          },
+          "Answer": {
+            "S": "QUESTION#2"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "2"
+              },
+              "longitude": {
+                "N": "2"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "2"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#1"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#2"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#3"
+          },
+          "SK": {
+            "S": "QUESTION#3"
+          },
+          "Question": {
+            "S": "QUESTION#3"
+          },
+          "Answer": {
+            "S": "QUESTION#3"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "3"
+              },
+              "longitude": {
+                "N": "3"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "3"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#1"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#3"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#4"
+          },
+          "SK": {
+            "S": "QUESTION#4"
+          },
+          "Question": {
+            "S": "QUESTION#4"
+          },
+          "Answer": {
+            "S": "QUESTION#4"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "4"
+              },
+              "longitude": {
+                "N": "4"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "4"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#1"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#4"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#5"
+          },
+          "SK": {
+            "S": "QUESTION#5"
+          },
+          "Question": {
+            "S": "QUESTION#5"
+          },
+          "Answer": {
+            "S": "QUESTION#5"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "5"
+              },
+              "longitude": {
+                "N": "5"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "5"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#1"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#5"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#11"
+          },
+          "SK": {
+            "S": "QUESTION#11"
+          },
+          "Question": {
+            "S": "QUESTION#11"
+          },
+          "Answer": {
+            "S": "QUESTION#11"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "11"
+              },
+              "longitude": {
+                "N": "11"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "11"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#2"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#11"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#22"
+          },
+          "SK": {
+            "S": "QUESTION#22"
+          },
+          "Question": {
+            "S": "QUESTION#22"
+          },
+          "Answer": {
+            "S": "QUESTION#22"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "22"
+              },
+              "longitude": {
+                "N": "22"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "22"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#2"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#22"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#33"
+          },
+          "SK": {
+            "S": "QUESTION#33"
+          },
+          "Question": {
+            "S": "QUESTION#33"
+          },
+          "Answer": {
+            "S": "QUESTION#33"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "33"
+              },
+              "longitude": {
+                "N": "33"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "33"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#2"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#33"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#44"
+          },
+          "SK": {
+            "S": "QUESTION#44"
+          },
+          "Question": {
+            "S": "QUESTION#44"
+          },
+          "Answer": {
+            "S": "QUESTION#44"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "44"
+              },
+              "longitude": {
+                "N": "44"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "44"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#2"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#44"
+          }
+        },
+        {
+          "PK": {
+            "S": "QUESTION#55"
+          },
+          "SK": {
+            "S": "QUESTION#55"
+          },
+          "Question": {
+            "S": "QUESTION#55"
+          },
+          "Answer": {
+            "S": "QUESTION#55"
+          },
+          "Location": {
+            "M": {
+              "latitude": {
+                "N": "55"
+              },
+              "longitude": {
+                "N": "55"
+              }
+            }
+          },
+          "QuestionId": {
+            "S": "55"
+          },
+          "GSI_1_PK": {
+            "S": "QUIZ#2"
+          },
+          "GSI_1_SK": {
+            "S": "QUESTION#55"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      }
+    }
+  ]
+}
